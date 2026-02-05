@@ -1,12 +1,17 @@
-A = [[1,1,1], [3, 2, 1], [2, -1, 4]]
+A = [[1, 1, 1], [3, 2, 1], [2, -1, 4]]
 b = [6, 10, 12]
 
-n  = len(A)
+A = [row[:] for row in A]
+b = b[:]
+
+n = len(A)
 
 # Forward pass of elimination
 for i in range(n-1):
+    if A[i][i] == 0:
+        raise ValueError("Zero pivot encountered")
     for j in range(i+1, n):
-        k_temp = - A[j][i] / A[i][i]
+        k_temp = -A[j][i] / A[i][i]
         print(f"Step {i+1} {j+1}: k = {k_temp:.2f}")
 
         temp_row = [a * k_temp for a in A[i]]
